@@ -5688,3 +5688,36 @@ footer {
         width: 80px;
     }
 }
+/* =========================================================
+   DESIGN 03 — LOCATION MOBILE BLUR FIX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .location-section,
+    .location-section * {
+        filter: none !important;
+    }
+
+    .location-section .location-hidden {
+        opacity: 1 !important;
+        visibility: visible !important;
+        filter: none !important;
+        transform: none !important;
+    }
+
+    .location-section .location-visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+        filter: none !important;
+        transform: none !important;
+    }
+
+    .location-section .location-art,
+    .location-section .location-details {
+        opacity: 1 !important;
+        visibility: visible !important;
+        filter: none !important;
+        transform: none !important;
+    }
+}

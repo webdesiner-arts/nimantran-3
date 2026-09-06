@@ -5721,3 +5721,78 @@ footer {
         transform: none !important;
     }
 }
+/* =========================================================
+   DESIGN 03 — OPENING PERFORMANCE FIX
+   Keep the WOW, remove the lag
+   ========================================================= */
+
+.opening-screen::before {
+    filter: none !important;
+}
+
+.opening-screen::after {
+    filter: none !important;
+}
+
+/* Lighter Ganpati rendering */
+.ganpati-svg {
+    filter: drop-shadow(0 0 12px rgba(225,175,79,.18)) !important;
+}
+
+.opening-screen.ganpati-ready .ganpati-svg {
+    filter: drop-shadow(0 0 16px rgba(225,175,79,.22)) !important;
+}
+
+/* Lighter halo */
+.ganpati-halo {
+    filter: none !important;
+}
+
+/* Don't make the transition expand ridiculously large */
+.opening-screen.opened::after {
+    transform: translate(-50%,-50%) scale(22) !important;
+    transition:
+        transform .85s cubic-bezier(.16,.8,.2,1),
+        opacity .85s ease !important;
+}
+
+/* Faster, smoother Ganpati exit */
+.opening-screen.opened .ganpati-svg {
+    transform: translate(-50%,-50%) scale(1.08) !important;
+    transition:
+        opacity .45s ease,
+        transform .6s ease !important;
+}
+
+.opening-screen.opened .ganpati-halo {
+    transform: translate(-50%,-50%) scale(1.3) !important;
+    transition:
+        opacity .5s ease,
+        transform .6s ease !important;
+}
+
+/* Mobile — prioritize smoothness */
+@media (max-width:600px) {
+
+    .opening-screen::before {
+        display: none;
+    }
+
+    .ganpati-svg {
+        filter: none !important;
+    }
+
+    .opening-screen.ganpati-ready .ganpati-svg {
+        filter: drop-shadow(0 0 10px rgba(225,175,79,.18)) !important;
+    }
+
+    .opening-screen.opened::after {
+        transform: translate(-50%,-50%) scale(16) !important;
+        transition-duration: .7s !important;
+    }
+
+    .opening-screen.opened .ganpati-svg {
+        transform: translate(-50%,-50%) scale(1.05) !important;
+        transition-duration: .45s !important;
+    }
+}

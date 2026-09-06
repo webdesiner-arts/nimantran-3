@@ -408,12 +408,13 @@ if (finalSection) {
     const params = new URLSearchParams(window.location.search);
     const clientId = params.get("id") || "sharma";
 
-    /* Find matching client */
+    /* Check clients.js */
     if (typeof clients === "undefined") {
         console.error("clients.js is not loaded.");
         return;
     }
 
+    /* Find client */
     const client = clients[clientId];
 
     if (!client) {
@@ -426,8 +427,7 @@ if (finalSection) {
        ARRIVAL DETAILS
        ========================================= */
 
-    const arrivalDetails =
-        document.querySelector(".arrival-details");
+    const arrivalDetails = document.querySelector(".arrival-details");
 
     if (arrivalDetails) {
 
@@ -461,6 +461,19 @@ if (finalSection) {
     if (familyName) {
         familyName.textContent =
             client.familyName;
+    }
+
+
+    /* =========================================
+       FAMILY HEAD
+       ========================================= */
+
+    const familyHead =
+        document.querySelector(".family-head");
+
+    if (familyHead && client.familyHead) {
+        familyHead.textContent =
+            client.familyHead;
     }
 
 
@@ -509,7 +522,7 @@ if (finalSection) {
 
         if (mahaprasadEvent) {
             mahaprasadEvent.textContent =
-                "वेळ येथे";
+                client.mahaprasadTime;
         }
 
 

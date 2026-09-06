@@ -295,8 +295,7 @@ const locationSection = document.querySelector(".location-section");
 
 if (locationSection) {
     const locationArt = locationSection.querySelector(".location-art");
-    const locationDetails =
-        locationSection.querySelector(".location-details");
+    const locationDetails = locationSection.querySelector(".location-details");
 
     const locationElements = [
         locationSection.querySelector(".section-number"),
@@ -312,31 +311,46 @@ if (locationSection) {
         }
     });
 
+    const revealLocation = function () {
+        locationSection.classList.add("location-active");
+
+        locationElements.forEach(function (element, index) {
+            if (element) {
+                setTimeout(function () {
+                    element.classList.add("location-visible");
+                }, index * 120);
+            }
+        });
+    };
+
     const locationObserver = new IntersectionObserver(
         function (entries, observer) {
             entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-
-                    locationSection.classList.add("location-active");
-
-                    locationElements.forEach(function (element, index) {
-                        if (element) {
-                            setTimeout(function () {
-                                element.classList.add("location-visible");
-                            }, index * 170);
-                        }
-                    });
-
+                    revealLocation();
                     observer.unobserve(entry.target);
                 }
             });
         },
         {
-            threshold: 0.25
+            threshold: 0.08,
+            rootMargin: "0px 0px -5% 0px"
         }
     );
 
     locationObserver.observe(locationSection);
+
+    /* Mobile safety fallback */
+    setTimeout(function () {
+        const rect = locationSection.getBoundingClientRect();
+
+        if (
+            rect.top < window.innerHeight * 0.9 &&
+            rect.bottom > 0
+        ) {
+            revealLocation();
+        }
+    }, 1200);
 }
 /* =========================================================
    FINAL CHAPTER — BLESSING REVEAL
